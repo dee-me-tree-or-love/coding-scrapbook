@@ -1,0 +1,6 @@
+- [x] basic script setup
+- [ ] support typescript
+- [ ] provide HTTP API
+- [ ] add additional poetry suppliers
+- [ ] run on Heroku
+- [ ] fix up README
