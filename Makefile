@@ -27,4 +27,14 @@ new-project np: require-category-env require-project-env fail-if-project-readme-
 	mkdir -p ./$(category)/$(project)
 	touch ./$(category)/$(project)/README.md
 	@echo "Done!"
+
+#@ main:		Checkout the main branch of the scrapbook
+.PHONY: main
+main:
+	git checkout main
+
+#@ list:		Lists existing and "IN_PROGRESS" projects
+list:
+	@echo "See following categories and projects:"
+	@ls -d ./*/* | xargs -I{} echo '-> {}'
 # ----
