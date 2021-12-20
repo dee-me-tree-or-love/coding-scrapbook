@@ -6,6 +6,18 @@ A sample Elixir based API returning random quotes.
 
 ## API
 
+### GET: `/health`
+
+Checks if the server is running ok.
+
+Content: `<text/html>`
+
+Body example:
+
+```json
+ok.
+```
+
 ### GET: `/quote/random`
 
 Returns a random quote.
