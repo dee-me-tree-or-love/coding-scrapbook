@@ -1,9 +1,17 @@
 defmodule RandomQuote.QuoteRouter do
   use Plug.Router
   require Logger
+  require Enum
+
+  alias RandomQuote.Stubs, as: Stubs
 
   plug(Plug.Logger, log: :debug)
+
+  # responsible for matching routes
   plug(:match)
+  # responsible for json parsing after route match
+  plug(Plug.Parsers, parsers: [:json], json_decoder: Poison)
+  # responsible for dispatching responses
   plug(:dispatch)
 
   # --------------------
@@ -12,7 +20,8 @@ defmodule RandomQuote.QuoteRouter do
 
   # Simple GET Request handler for path /hello
   get "/random" do
-    send_resp(conn, 200, "yo.")
+    response = Poison.encode!(Enum.random(Stubs.quote_entries()))
+    send_resp(conn, 200, response)
   end
 end
 
@@ -25,7 +34,6 @@ defmodule RandomQuote.Router do
   alias RandomQuote.QuoteRouter, as: QuoteRouter
 
   plug(Plug.Logger, log: :debug)
-
   plug(:match)
   plug(:dispatch)
 
