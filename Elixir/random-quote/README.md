@@ -14,7 +14,7 @@ Content: `<text/html>`
 
 Body example:
 
-```json
+```plaintext
 ok.
 ```
 
