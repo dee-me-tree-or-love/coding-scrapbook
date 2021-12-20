@@ -51,4 +51,9 @@ defmodule RandomQuote.Router do
 
   # Forward routes to QuoteRouter
   forward("/quotes", to: QuoteRouter)
+
+  # Match all unknown routes
+  match _ do
+    send_resp(conn, 404, "oops...")
+  end
 end
