@@ -1,14 +1,6 @@
-defmodule Source do
-  defstruct [:title, :author]
-end
-
-defmodule Quote do
-  defstruct [:uid, :origin, :content, :source]
-end
-
 defmodule RandomQuote.Stubs do
-  alias Quote
-  alias Source
+  import Quote
+  import Source
 
   def quote_entries do
     for x <- 1..10,
