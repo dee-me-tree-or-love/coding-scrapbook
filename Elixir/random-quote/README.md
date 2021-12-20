@@ -29,12 +29,13 @@ Body example:
 ```json
 {
   "item": {
-    "uid": "112",
+    "uid": 112,
     "content": "Man, when you lose your laugh you lose your footing.",
     "origin": "McMurphy",
     "source": {
       "title": "One Flew Over the Cuckoo's Nest",
-      "author": "Ken Kesey",
+      "author": "Ken Kesey"
+    }
   }
 }
 ```

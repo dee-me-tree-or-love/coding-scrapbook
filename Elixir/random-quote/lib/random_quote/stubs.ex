@@ -2,7 +2,7 @@ defmodule RandomQuote.Stubs do
   import Quote
   import Source
 
-  def quote_entries do
+  def get_quotes do
     for x <- 1..10,
         do: %Quote{
           uid: x,
