@@ -3,7 +3,8 @@ defmodule RandomQuote.QuoteRouter do
   require Logger
   require Enum
 
-  alias RandomQuote.Stubs, as: Stubs
+  # alias RandomQuote.Stubs, as: Stubs
+  alias RandomQuote.JsonQuoteRepository, as: JsonQuoteRepository
 
   plug(Plug.Logger, log: :debug)
 
@@ -20,12 +21,29 @@ defmodule RandomQuote.QuoteRouter do
 
   # Simple GET Request handler for path /hello
   get "/random" do
-    with {:ok, items} <- Stubs.get_quotes(),
-         {:ok, response} <- Enum.random(items) |> Poison.encode(),
-         do:
-           conn
-           |> put_resp_content_type("application/json; charset=utf-8")
-           |> send_resp(200, response)
+    # TODO: figure out if it's possible to make it more concise (use Towel? or OK?)
+    data = JsonQuoteRepository.get_quotes()
+
+    result =
+      case data do
+        {:ok, items} -> Enum.random(items) |> Poison.encode()
+        _ -> {:error, :not_found}
+      end
+
+    case result do
+      {:ok, response} ->
+        conn
+        |> put_resp_content_type("application/json; charset=utf-8")
+        |> send_resp(200, response)
+
+      {:error, :not_found} ->
+        conn
+        |> send_resp(404, 'nothing was found...')
+
+      _ ->
+        conn
+        |> send_resp(500, 'everything is broken!')
+    end
   end
 end
 

@@ -1,18 +1,20 @@
 defmodule JsonReader do
   def get_contents(filename) do
-    with {:ok, body} <- File.read(filename), {:ok, json} <- Poison.decode(body), do: {:ok, json}
+    with {:ok, body} <- File.read(filename), do: {:ok, body}
   end
 end
 
-defmodule JsonQuoteRepository do
-  # TODO: make configurable
-  @repository_file "quotes.json"
+defmodule RandomQuote.JsonQuoteRepository do
+  alias JsonReader
+  require Enum
+  import Quote
 
-  def adapt_quote(body) do
-    # Adapt received json body to quote struct
-  end
+  # TODO: make configurable
+  @repository_file Path.expand("./resources/quotes.json")
 
   def get_quotes() do
-    # Retrieve all the quotes from JSON repo
+    with {:ok, body} <- JsonReader.get_contents(@repository_file),
+         {:ok, items} <- Poison.decode(body, as: [%Quote{}]),
+         do: {:ok, items}
   end
 end
