@@ -11,7 +11,7 @@ defmodule RandomQuote.Application do
       Plug.Adapters.Cowboy.child_spec(
         scheme: :http,
         plug: RandomQuote.Router,
-        # TODO: consider different port
+        # TODO: consider different port as part of config?
         options: [port: 8085]
       )
     ]

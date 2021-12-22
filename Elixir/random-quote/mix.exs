@@ -11,6 +11,8 @@ defmodule RandomQuote.MixProject do
     ]
   end
 
+  # TODO: how to get the code recompiling on source change???
+
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
