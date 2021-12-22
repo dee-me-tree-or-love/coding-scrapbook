@@ -20,7 +20,8 @@ defmodule RandomQuote.QuoteRouter do
 
   # Simple GET Request handler for path /hello
   get "/random" do
-    with {:ok, response} <- Poison.encode(Enum.random(Stubs.get_quotes())),
+    with {:ok, items} <- Stubs.get_quotes(),
+         {:ok, response} <- Enum.random(items) |> Poison.encode(),
          do:
            conn
            |> put_resp_content_type("application/json; charset=utf-8")
