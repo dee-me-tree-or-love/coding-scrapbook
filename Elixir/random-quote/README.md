@@ -39,3 +39,13 @@ Body example:
   }
 }
 ```
+
+## Development
+
+### Install dependencies
+
+`mix deps`
+
+### Starting the server
+
+`mix run --no-halt`
