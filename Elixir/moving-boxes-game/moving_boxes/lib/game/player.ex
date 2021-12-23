@@ -37,7 +37,7 @@ defmodule Player do
     {:reply, {:ok, {state.x, state.y, state.direction, state.name}}, state}
   end
 
-  @spec move({direction(), name()}) :: any
+  @spec move({direction(), name()}) :: atom()
   def move({d, name}) do
     case d do
       :N -> GenServer.cast(get_classified_name(name), :move_north)

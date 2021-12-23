@@ -4,7 +4,7 @@ defmodule PlayerTest do
 
   @test_instance Player
 
-  test "get state returns current state" do
+  test "get_state returns current state" do
     {:ok, _} = @test_instance.start_link({0, 0, :S, "Frodo"})
     {:ok, state} = @test_instance.get_state("Frodo")
     assert state == {0, 0, :S, "Frodo"}

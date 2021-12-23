@@ -4,7 +4,7 @@ defmodule BoxTest do
 
   @test_instance Box
 
-  test "get state returns current state" do
+  test "get_state returns current state" do
     {:ok, _} = @test_instance.start_link({0, 0, :S, "ring"})
     {:ok, state} = @test_instance.get_state("ring")
     assert state == {0, 0, :S, "ring"}

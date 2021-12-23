@@ -11,7 +11,7 @@ defmodule Box do
   use GenServer
   defstruct [:x, :y, :direction, :name]
 
-  @spec get_classified_name(binary) :: atom
+  @spec get_classified_name(binary) :: atom()
   def get_classified_name(name) do
     String.to_atom(name)
   end
