@@ -10,17 +10,12 @@ defmodule Target do
   use GenServer
   defstruct [:x, :y, :box_count, :name]
 
-  @spec get_classified_name(binary) :: atom
-  def get_classified_name(name) do
-    String.to_atom(name)
-  end
-
   @doc """
   Public function for starting the link with this target.
   """
   @spec start_link({coordinate(), coordinate(), name()}) :: GenServer.on_start()
   def start_link({x, y, name}) do
-    GenServer.start_link(__MODULE__, {x, y, name}, name: get_classified_name(name))
+    GenServer.start_link(__MODULE__, {x, y, name}, name: Utils.get_classified_name(name))
   end
 
   @spec init({coordinate(), coordinate(), name()}) :: {:ok, state()}
@@ -39,7 +34,7 @@ defmodule Target do
 
   @spec consume_box(name()) :: atom()
   def consume_box(name) do
-    GenServer.cast(get_classified_name(name), :consume_box)
+    GenServer.cast(Utils.get_classified_name(name), :consume_box)
   end
 
   def handle_cast(:consume_box, state) do

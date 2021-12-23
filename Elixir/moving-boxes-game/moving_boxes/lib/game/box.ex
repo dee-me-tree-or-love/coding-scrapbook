@@ -11,17 +11,12 @@ defmodule Box do
   use GenServer
   defstruct [:x, :y, :direction, :name]
 
-  @spec get_classified_name(binary) :: atom()
-  def get_classified_name(name) do
-    String.to_atom(name)
-  end
-
   @doc """
   Public function for starting the link with this box.
   """
   @spec start_link({coordinate(), coordinate(), direction(), name()}) :: GenServer.on_start()
   def start_link({x, y, d, name}) do
-    GenServer.start_link(__MODULE__, {x, y, d, name}, name: get_classified_name(name))
+    GenServer.start_link(__MODULE__, {x, y, d, name}, name: Utils.get_classified_name(name))
   end
 
   @spec init({coordinate(), coordinate(), direction(), name()}) :: {:ok, state()}
@@ -38,14 +33,10 @@ defmodule Box do
     {:reply, {:ok, {state.x, state.y, state.direction, state.name}}, state}
   end
 
-  @spec move({direction(), name()}) :: any
+  @spec move({direction(), name()}) :: atom()
   def move({d, name}) do
-    case d do
-      :N -> GenServer.cast(get_classified_name(name), :move_north)
-      :S -> GenServer.cast(get_classified_name(name), :move_south)
-      :E -> GenServer.cast(get_classified_name(name), :move_east)
-      :W -> GenServer.cast(get_classified_name(name), :move_west)
-    end
+    Utils.get_direction_move_action(d)
+    |> (fn x -> GenServer.cast(Utils.get_classified_name(name), x) end).()
   end
 
   def handle_cast(:move_north, state) do
