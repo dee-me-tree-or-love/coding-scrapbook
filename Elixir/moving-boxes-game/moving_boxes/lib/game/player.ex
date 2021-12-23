@@ -25,7 +25,7 @@ defmodule Player do
 
   @spec init({coordinate(), coordinate(), direction(), name()}) :: {:ok, state()}
   def init({x, y, d, name}) do
-    {:ok, %Player{x: x, y: y, direction: d, name: name}}
+    {:ok, %__MODULE__{x: x, y: y, direction: d, name: name}}
   end
 
   @spec get_state(name()) :: any
@@ -48,18 +48,18 @@ defmodule Player do
   end
 
   def handle_cast(:move_north, state) do
-    {:noreply, %Player{state | y: state.y + 1}}
+    {:noreply, %__MODULE__{state | y: state.y + 1}}
   end
 
   def handle_cast(:move_south, state) do
-    {:noreply, %Player{state | y: state.y - 1}}
+    {:noreply, %__MODULE__{state | y: state.y - 1}}
   end
 
   def handle_cast(:move_east, state) do
-    {:noreply, %Player{state | x: state.x + 1}}
+    {:noreply, %__MODULE__{state | x: state.x + 1}}
   end
 
   def handle_cast(:move_west, state) do
-    {:noreply, %Player{state | x: state.x - 1}}
+    {:noreply, %__MODULE__{state | x: state.x - 1}}
   end
 end
