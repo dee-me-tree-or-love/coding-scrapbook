@@ -4,8 +4,9 @@ Small tool for simple shorthand encoding for provided file written in Haskell.
 
 ## Provided features
 
-- Shorthand encoding for provided text files.
-  - Supported extensions:
+- Shorthand encoding for provided text.
+  - Can be used to read input streams.
+  - Supported file extensions:
     - `.txt`
 
 ## How to use it?
