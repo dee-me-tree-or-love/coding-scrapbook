@@ -10,11 +10,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 // TODO: useful for the future to support user input.
-// use std::io; 
+// use std::io;
 
 struct Game {
     active: bool,
     player_1_move: bool,
+    // TODO: add a type synonim for Vec<u32> representing rows?
     rows: Vec<u32>,
 }
 
@@ -51,7 +52,6 @@ fn print_player_greeting(player_nr: u32) {
     println!("Your move, player {}!", player_nr);
 }
 
-// TODO: add a type synonim for Vec<u32> representing rows?
 // TODO: add a guard to prevent taking more than possible!
 fn take_from_row(game: &mut Game, row_index: usize, amount: u32) -> Game {
     let rows = &mut game.rows;
@@ -62,6 +62,11 @@ fn take_from_row(game: &mut Game, row_index: usize, amount: u32) -> Game {
     }
 }
 
+fn get_user_move() -> u32 {
+    // TODO: implement a user input prompt
+    return 1;
+}
+
 fn main() {
     println!("Hello, players.");
 
@@ -69,7 +74,16 @@ fn main() {
     let mut game = build_game(4);
 
     // TODO: define this as a player step function
-    print_game_state(&game);
-    game = take_from_row(&mut game, 2, 3);
-    print_game_state(&game);
+    for number in 1..4 {
+        println!("Round: {}", number);
+        print_game_state(&game);
+        
+        // TODO: introduce a Tuple for user input?
+        let row_index = get_user_move() as usize;
+        let amount = get_user_move();
+
+        // TODO: check that row index and amount are okay.
+        game = take_from_row(&mut game, row_index, amount);
+        game.player_1_move = !game.player_1_move;
+    }
 }
