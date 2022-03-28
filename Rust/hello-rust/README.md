@@ -1,3 +1,3 @@
 # Hello-Rust
 
-Simple demo project for trying out Rust.
+Simple demo projects for trying out Rust.
