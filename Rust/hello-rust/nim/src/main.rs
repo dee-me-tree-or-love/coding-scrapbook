@@ -1,6 +1,16 @@
+///////////////////////////////////////////////////////////////////////////////
+// Simple NIM game (misere) for 2 players.                                   //
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
+// See more at https://en.wikipedia.org/wiki/Nim.                            //
+//                                                                           //
+// Gameplay:                                                                 //
+//  - Game starts with N rows, for each row i containing (i * 2 + 1) sticks. //
+//  - Each player iteratively takes X sticks from any row i in N.            //
+//  - The player who takes the last stick loses the game.                    //
+///////////////////////////////////////////////////////////////////////////////
+
 // TODO: useful for the future to support user input.
 // use std::io; 
-
 
 struct Game {
     active: bool,
