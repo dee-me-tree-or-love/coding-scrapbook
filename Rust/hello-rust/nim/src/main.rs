@@ -1,4 +1,6 @@
-use std::io;
+// TODO: useful for the future to support user input.
+// use std::io; 
+
 
 struct Game {
     active: bool,
@@ -22,32 +24,42 @@ fn print_row(row: u32) {
     println!("{}", (0..row).map(|_| "!").collect::<String>());
 }
 
-fn print_player_greeting(player_nr: u32) {
-    println!("Your move, player {}!", player_nr);
-}
-
-fn print_game_state(game: Game) {
+fn print_game_state(game: &Game) {
     if game.active {
         if game.player_1_move {
             print_player_greeting(1);
         } else {
             print_player_greeting(2);
         }
-        for row in game.rows {
-            print_row(row);
+        for row in &game.rows {
+            print_row(*row);
         }
     }
 }
 
-fn take_from_row(game: Game, row_index: u32, amount: u32) -> Game {
-    // TODO: implement a way to take items from the specified game row
+fn print_player_greeting(player_nr: u32) {
+    println!("Your move, player {}!", player_nr);
+}
+
+// TODO: add a type synonim for Vec<u32> representing rows?
+// TODO: add a guard to prevent taking more than possible!
+fn take_from_row(game: &mut Game, row_index: usize, amount: u32) -> Game {
+    let rows = &mut game.rows;
+    rows[row_index] = rows[row_index] - amount;
+    Game {
+        rows: rows.to_vec(),
+        ..*game
+    }
 }
 
 fn main() {
     println!("Hello, players.");
 
     // TODO: build game with user provided amount of rows.
-    let game = build_game(4);
+    let mut game = build_game(4);
 
-    print_game_state(game);
+    // TODO: define this as a player step function
+    print_game_state(&game);
+    game = take_from_row(&mut game, 2, 3);
+    print_game_state(&game);
 }
