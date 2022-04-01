@@ -17,10 +17,10 @@ Hello, players.
 Round: 1
 ~~~~
 Your move, player 1!
-!
-!!!
-!!!!!
-!!!!!!!
+0: !
+1: !!!
+2: !!!!!
+3: !!!!!!!
 >> Input the row: 
 2
 >> Input the amount: 
@@ -28,10 +28,10 @@ Your move, player 1!
 Round: 2
 ~~~~
 Your move, player 2!
-!
-!!!
-!
-!!!!!!!
+0: !
+1: !!!
+2: !
+3: !!!!!!!
 >> Input the row:
 # waiting for input...
 ```
