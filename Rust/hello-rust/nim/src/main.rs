@@ -37,8 +37,8 @@ fn build_game(nr_rows: u32) -> Game {
     }
 }
 
-fn print_row(row: u32) {
-    println!("{}", (0..row).map(|_| "!").collect::<String>());
+fn print_row(row: u32, index: usize) {
+    println!("{}: {}", index, (0..row).map(|_| "!").collect::<String>());
 }
 
 fn print_game_state(game: &Game) {
@@ -48,8 +48,10 @@ fn print_game_state(game: &Game) {
         } else {
             print_player_greeting(2);
         }
+        let mut index : usize = 0;
         for row in &game.rows {
-            print_row(*row);
+            print_row(*row, index);
+            index = index + 1;
         }
     }
 }
@@ -60,11 +62,11 @@ fn print_player_greeting(player_nr: u32) {
 
 fn print_game_finish(game: &Game) {
     if game.player_1_move {
-        print_player_farewell(1);
-        print_player_congrats(2);
-    } else {
         print_player_farewell(2);
         print_player_congrats(1);
+    } else {
+        print_player_farewell(1);
+        print_player_congrats(2);
     }
 }
 
