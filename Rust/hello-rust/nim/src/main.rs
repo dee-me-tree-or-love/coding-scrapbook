@@ -62,11 +62,11 @@ fn print_player_greeting(player_nr: u32) {
 
 fn print_game_finish(game: &Game) {
     if game.player_1_move {
-        print_player_farewell(1);
-        print_player_congrats(2);
-    } else {
         print_player_farewell(2);
         print_player_congrats(1);
+    } else {
+        print_player_farewell(1);
+        print_player_congrats(2);
     }
 }
 
