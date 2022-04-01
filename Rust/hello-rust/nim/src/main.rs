@@ -95,8 +95,12 @@ fn get_user_move(prompt: String) -> u32 {
     return input;
 }
 
+fn print_welcome() {
+    println!("🦀\nHello, players.");
+}
+
 fn main() {
-    println!("Hello, players.");
+    print_welcome();
 
     // TODO: build game with user provided amount of rows.
     let mut game = build_game(4);
