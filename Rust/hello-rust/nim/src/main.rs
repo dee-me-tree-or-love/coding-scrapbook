@@ -9,14 +9,21 @@
 //  - The player who takes the last stick loses the game.                    //
 ///////////////////////////////////////////////////////////////////////////////
 
-// TODO: useful for the future to support user input.
-// use std::io;
-
+use std::io;
 struct Game {
-    active: bool,
     player_1_move: bool,
     // TODO: add a type synonim for Vec<u32> representing rows?
     rows: Vec<u32>,
+}
+
+impl Game {
+    fn admits(&self, row: usize, amount: u32) -> bool {
+        row < self.rows.len() && (self.rows[row] >= amount)
+    }
+
+    fn is_active(&self) -> bool {
+        0 < self.rows.iter().fold(0, |sum, &val| sum + val)
+    }
 }
 
 fn build_rows(nr_rows: u32) -> Vec<u32> {
@@ -25,7 +32,6 @@ fn build_rows(nr_rows: u32) -> Vec<u32> {
 
 fn build_game(nr_rows: u32) -> Game {
     Game {
-        active: true,
         player_1_move: true,
         rows: build_rows(nr_rows),
     }
@@ -36,7 +42,7 @@ fn print_row(row: u32) {
 }
 
 fn print_game_state(game: &Game) {
-    if game.active {
+    if game.is_active() {
         if game.player_1_move {
             print_player_greeting(1);
         } else {
@@ -49,22 +55,44 @@ fn print_game_state(game: &Game) {
 }
 
 fn print_player_greeting(player_nr: u32) {
-    println!("Your move, player {}!", player_nr);
+    println!("~~~~\nYour move, player {}!", player_nr);
 }
 
-// TODO: add a guard to prevent taking more than possible!
-fn take_from_row(game: &mut Game, row_index: usize, amount: u32) -> Game {
+fn print_game_finish(game: &Game) {
+    if game.player_1_move {
+        print_player_farewell(1);
+        print_player_congrats(2);
+    } else {
+        print_player_farewell(2);
+        print_player_congrats(1);
+    }
+}
+
+fn print_player_farewell(player_nr: u32) {
+    println!("~~~~\n 😥 Your loss, player {}!", player_nr);
+}
+
+fn print_player_congrats(player_nr: u32) {
+    println!("~~~~\n 🎉 Your victory, player {}!", player_nr);
+}
+
+fn take_from_row(game: &mut Game, row: usize, amount: u32) -> Game {
     let rows = &mut game.rows;
-    rows[row_index] = rows[row_index] - amount;
+    rows[row] = rows[row] - amount;
     Game {
         rows: rows.to_vec(),
         ..*game
     }
 }
 
-fn get_user_move() -> u32 {
-    // TODO: implement a user input prompt
-    return 1;
+fn get_user_move(prompt: String) -> u32 {
+    println!(">> {}", prompt);
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Failed to read line");
+    let input: u32 = input.trim().parse().expect("Please type a number!");
+    return input;
 }
 
 fn main() {
@@ -73,17 +101,26 @@ fn main() {
     // TODO: build game with user provided amount of rows.
     let mut game = build_game(4);
 
-    // TODO: define this as a player step function
-    for number in 1..4 {
-        println!("Round: {}", number);
+    let mut round: u32 = 0;
+    while game.is_active() {
+        round = round + 1;
+        println!("Round: {}", round);
         print_game_state(&game);
-        
-        // TODO: introduce a Tuple for user input?
-        let row_index = get_user_move() as usize;
-        let amount = get_user_move();
 
-        // TODO: check that row index and amount are okay.
-        game = take_from_row(&mut game, row_index, amount);
+        let mut ok_input = false;
+        let mut row: usize = 0;
+        let mut amount: u32 = 0;
+        while !ok_input {
+            row = get_user_move("Input the row: ".to_string()) as usize;
+            amount = get_user_move("Input the amount: ".to_string());
+            ok_input = game.admits(row, amount);
+            if !ok_input {
+                println!("Input needs to be within the game bounds.")
+            }
+        }
+
+        game = take_from_row(&mut game, row, amount);
         game.player_1_move = !game.player_1_move;
     }
+    print_game_finish(&game);
 }
