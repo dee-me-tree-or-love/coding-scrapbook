@@ -1,0 +1,49 @@
+name:                timeboxy
+version:             0.1.0.0
+# TODO: change the github path if moving from the `coding-scrapbook` repository
+github:              "dee-me-tree-or-love/coding-scrapbook/"
+license:             BSD3
+author:              "dee-me-tree-or-love"
+maintainer:          "dmtree.dev@yahoo.com"
+copyright:           "2022 dee-me-tree-or-love"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+synopsis:            Tiny project for managing time boxes for personal reports and statistics
+category:            CLI
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/dee-me-tree-or-love/coding-scrapbook/tree/main/Haskell/timeboxy#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+library:
+  source-dirs: src
+
+executables:
+  timeboxy-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - timeboxy
+
+tests:
+  timeboxy-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - timeboxy
