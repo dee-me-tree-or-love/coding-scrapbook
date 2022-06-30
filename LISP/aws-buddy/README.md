@@ -30,4 +30,4 @@ Stuff to check/follow during the development
 
 - <https://stevelosh.com/blog/2021/03/small-common-lisp-cli-programs/>
 - <https://medium.com/@bogomolnyelad/getting-started-with-common-lisp-in-2018-3a1b18c9050>
-- <https://youtu.be/BRiS_enCbwA>
+- [Neil Munro's YouTube tutorials](https://www.youtube.com/c/NeilMunro)
