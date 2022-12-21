@@ -1,0 +1,9 @@
+{
+  "folders": [
+    { "name": "Main", "path": "." },
+    { "name": "Elixir", "path": "./Elixir" },
+    { "name": "LISP", "path": "./LISP" },
+    { "name": "Node", "path": "./Node" },
+    { "name": "Rust", "path": "./Rust" }
+  ]
+}
