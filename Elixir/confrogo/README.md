@@ -2,10 +2,7 @@
 
 Your friendly Slack conference reminder frog 🐸.
 
-> 🧪 This is a test project, inspired by
-> "How to build karma Slack bot in Elixir"
-> from <https://happyteam.io/blog/how-to-build-karma-slack-bot-in-elixir/>.  
-> And relying on <https://github.com/BlakeWilliams/Elixir-Slack>.
+> 🧪 This is a test project, no production use is intended yet.
 
 ## Installation
 
