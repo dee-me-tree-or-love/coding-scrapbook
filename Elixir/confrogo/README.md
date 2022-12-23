@@ -27,13 +27,13 @@ $ env $(cat .env) mix run --no-halt
 TT:TT:TT.TTT [info] The server listening at port: 8000
 ```
 
-### 🧰 Or use `Makefile` 🎉
-
-#### `make deps` - to install dependencies
-
-#### `make test` - to run tests
-
-#### `make start-local` - to run a local application
+> ### 🧰 Or use the `Makefile` 🎉
+>
+> #### `make deps` - to install dependencies
+>
+> #### `make test` - to run tests
+>
+> #### `make start-local` - to run a local application
 
 <!-- TODO: add this later -->
 <!-- ## Installation
