@@ -6,19 +6,21 @@ Your friendly Slack conference reminder frog 🐸.
 
 ## 👷 Development
 
-### 📦 Install `mix` dependencies
+### Using [`mix`](https://elixir-lang.org/getting-started/mix-otp/introduction-to-mix.html)
+
+#### 📦 Install `mix` dependencies
 
 ```bash
 mix deps.get
 ```
 
-### 🧪 Run Confrogo tests
+#### 🧪 Run Confrogo tests
 
 ```bash
 mix test
 ```
 
-### 🏁 Run Confrogo local application
+#### 🏁 Run Confrogo local application
 
 > Make sure you have `cp .env.example` and replaced the demo variables with your own.
 
@@ -27,7 +29,7 @@ $ env $(cat .env) mix run --no-halt
 TT:TT:TT.TTT [info] The server listening at port: 8000
 ```
 
-> ### 🧰 Or use the `Makefile` 🎉
+> ### 🧰 Or use the [`Makefile`](./Makefile) 🎉
 >
 > #### `make deps` - to install dependencies
 >
