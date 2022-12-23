@@ -24,3 +24,6 @@ confrogo-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Configuration variables
+.env

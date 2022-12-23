@@ -23,7 +23,8 @@ defmodule Confrogo.MixProject do
   defp deps do
     [
       {:plug_cowboy, "~> 2.6"},
-      {:jason, "~> 1.4"}
+      {:jason, "~> 1.4"},
+      {:slack, "~> 0.23"}
     ]
   end
 end

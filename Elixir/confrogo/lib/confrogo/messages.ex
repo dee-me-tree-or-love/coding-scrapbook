@@ -1,19 +1,21 @@
 defmodule Confrogo.Messages do
   @moduledoc "Configures Confrogo's message dictionary"
 
-  def message(:frog) do
-    "🐸"
+  def say(:frog) do
+    ":frog:"
   end
 
-  def message(:hi) do
+  def say(:hi) do
     "hello!"
   end
 
-  def message(:heart) do
+  def say(:heart) do
     "<3"
   end
 
-  def message(:health) do
-    "It's OK #{message(Confrogo.health())}"
+  def say(:health) do
+    "It's OK #{say(health())}"
   end
+
+  defp health, do: :heart
 end
