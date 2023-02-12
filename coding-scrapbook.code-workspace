@@ -9,6 +9,10 @@
       "path": "./Elixir"
     },
     {
+      "name": "Jupyter",
+      "path": "./Jupyter"
+    },
+    {
       "name": "LISP",
       "path": "./LISP"
     },
