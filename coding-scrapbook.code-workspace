@@ -21,6 +21,10 @@
       "path": "./Node"
     },
     {
+      "name": "Python",
+      "path": "./Python"
+    },
+    {
       "name": "Rust",
       "path": "./Rust"
     }
